@@ -18,10 +18,9 @@ if [ -n "$TAILSCALE_AUTH_KEY" ]; then
   done
 
   echo "[tailscale] connecting..."
-  tailscale up \
+  tailscale --socket=/var/run/tailscale/tailscaled.sock up \
     --authkey="${TAILSCALE_AUTH_KEY}" \
-    --hostname="${TAILSCALE_HOSTNAME:-railway-openclaw}" \
-    --socket=/var/run/tailscale/tailscaled.sock
+    --hostname="${TAILSCALE_HOSTNAME:-railway-openclaw}"
 
   echo "[tailscale] connected as $(tailscale --socket=/var/run/tailscale/tailscaled.sock ip -4)"
 fi
